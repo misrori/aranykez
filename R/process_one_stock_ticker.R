@@ -33,7 +33,6 @@ stock_get_one_ticker  <- function(ticker, start_date = "2000-01-01", end_date = 
     }else{
       df[[paste0('ma_', simple_mas, '_value')]] <- movavg( df[['close']], simple_mas,type = 's' )
       df[[paste0('diff_',simple_mas,'_ma_value')]] <-  (( df[["close"]]  /df[[paste0('ma_', simple_mas, '_value')]] )-1)*100
-      df[[paste0('ma_', simple_mas, '_value')]] <- NULL
     }
   }
 

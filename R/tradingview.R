@@ -38,8 +38,21 @@ utility_all_stock_from_tradingvies <- function() {
   return(adat)
 }
 
+#' Changing character column to numeric if it is numeric
+#' @param df dataframe to check the columns
+utility_change_col_to_num <- function(df) {
+  df <- df[,!duplicated(names(df)), with=F]
+  nevek <-names(df)
+  for (i in nevek) {
+    if(suppressWarnings(sum(is.na(as.numeric(  df[[i]][!is.na(df[[i]])] )  ))==0)){
+      df[[i]] <- as.numeric(df[[i]])
+    }
+  }
+  return(df)
+}
+
 #' All the stock data
 #' @export
-data_all_stock <- utility_all_stock_from_tradingvies()
+data_all_stock <- utility_change_col_to_num(utility_all_stock_from_tradingvies())
 
 
