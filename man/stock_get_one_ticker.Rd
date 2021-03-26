@@ -4,8 +4,12 @@
 \alias{stock_get_one_ticker}
 \title{Downloading and adding technical indicators to the historical data of a ticker}
 \usage{
-stock_get_one_ticker(ticker, start_date = "2000-01-01",
-  end_date = Sys.Date(), mas = c(50, 100, 200))
+stock_get_one_ticker(
+  ticker,
+  start_date = "2000-01-01",
+  end_date = Sys.Date(),
+  mas = c(50, 100, 200)
+)
 }
 \arguments{
 \item{ticker}{The ticker of the company to download}

@@ -4,7 +4,9 @@
 \name{data_all_stock}
 \alias{data_all_stock}
 \title{All the stock data}
-\format{An object of class \code{data.table} (inherits from \code{data.frame}) with 5615 rows and 35 columns.}
+\format{
+An object of class \code{data.table} (inherits from \code{data.frame}) with 5641 rows and 35 columns.
+}
 \usage{
 data_all_stock
 }

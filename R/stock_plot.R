@@ -3,7 +3,7 @@
 #' Plot one stock
 #' @export
 #' @param ticker The ticker id of the company
-#' @importFrom ggplot2 ggplot ggplotGrob
+#' @import ggplot2
 #' @importFrom tidyquant geom_candlestick
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid grid.newpage grid.draw
@@ -13,9 +13,6 @@ stock_show_one_plot <- function(ticker ) {
   # ticker <- 'RIDE'
   t <- utility_ad_local_min_max(stock_get_one_ticker(ticker = ticker, start_date = (Sys.Date()-500), end_date = Sys.Date()),number_of_days = 20)
 
-
-  data_all_stock[name==ticker]$sector
-  data_all_stock[name==ticker]$industry
 
   sec_loc <- paste0('Sector location: ', which(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name==ticker) ,'/', length(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name)  )
   ind_loc <- paste0('Industry location: ', which(data_all_stock[industry==data_all_stock[name==ticker]$industry,]$name==ticker), '/', length(data_all_stock[industry==data_all_stock[name==ticker]$industry,]$name)    )
@@ -46,7 +43,7 @@ stock_show_one_plot <- function(ticker ) {
     # theme(axis.text=element_text(size=20))+
     # theme(axis.title = element_text(size=20))+
     # geom_label_repel( size=6.5  )
-    geom_label_repel(  )
+    geom_label_repel( box.padding = 0.5, max.overlaps = Inf )
 
 
   p2 <- ggplot(t, aes(x=date, y=rsi)) + geom_line()+

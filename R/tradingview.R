@@ -39,6 +39,7 @@ utility_all_stock_from_tradingvies <- function() {
 }
 
 #' Changing character column to numeric if it is numeric
+#' @export
 #' @param df dataframe to check the columns
 utility_change_col_to_num <- function(df) {
   df <- df[,!duplicated(names(df)), with=F]
@@ -54,5 +55,6 @@ utility_change_col_to_num <- function(df) {
 #' All the stock data
 #' @export
 data_all_stock <- utility_change_col_to_num(utility_all_stock_from_tradingvies())
+
 
 

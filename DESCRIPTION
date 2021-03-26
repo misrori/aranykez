@@ -8,5 +8,5 @@ Description: It will give show to you some interesting stock, cryptos to investi
 License: AGPL
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Imports: data.table, ggplot2, tidyquant, ggrepel, grid, gridExtra, rtsdata, TTR, pracma, jsonlite, httr, shiny, shinythemes, stats, shinycssloaders

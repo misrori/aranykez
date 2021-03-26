@@ -2,10 +2,10 @@
 % Please edit documentation in R/stock_shiny_apps.R
 \name{shiny_one_stock}
 \alias{shiny_one_stock}
-\title{shiny try}
+\title{shiny show one plot of stock market}
 \usage{
 shiny_one_stock()
 }
 \description{
-shiny try
+shiny show one plot of stock market
 }
