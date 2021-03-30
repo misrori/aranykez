@@ -4,7 +4,7 @@
 \alias{shiny_stock_browser}
 \title{Fiter and show stock market}
 \usage{
-shiny_stock_browser(variables)
+shiny_stock_browser()
 }
 \description{
 Fiter and show stock market

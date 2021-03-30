@@ -8,8 +8,6 @@ $(document).on("keyup", function(e) {
 });
 '
 
-
-
 #' shiny show one plot of stock market
 #' @export
 #' @import shiny
@@ -54,7 +52,7 @@ shiny_one_stock <- function() {
 #' @import data.table
 #' @import shinycssloaders
 #' @export
-shiny_stock_browser <- function(variables) {
+shiny_stock_browser <- function() {
 
 ui <-
   dashboardPage(

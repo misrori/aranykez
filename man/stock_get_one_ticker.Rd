@@ -8,7 +8,9 @@ stock_get_one_ticker(
   ticker,
   start_date = "2000-01-01",
   end_date = Sys.Date(),
-  mas = c(50, 100, 200)
+  mas = c(50, 100, 200),
+  ad_local_text = F,
+  ad_percent_change = F
 )
 }
 \arguments{
@@ -19,6 +21,10 @@ stock_get_one_ticker(
 \item{end_date}{The last date of the data}
 
 \item{mas}{List of the simple moving averages to calculate}
+
+\item{ad_local_text}{if you want to calculate the local min max with 20 period}
+
+\item{ad_percent_change}{if you want to calculate the percent change from the first day}
 }
 \description{
 Downloading and adding technical indicators to the historical data of a ticker

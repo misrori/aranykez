@@ -1,5 +1,3 @@
-
-
 #' Plot one stock
 #' @export
 #' @param ticker The ticker id of the company
@@ -59,5 +57,25 @@ stock_show_one_plot <- function(ticker ) {
   grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2)))
   p<- grid.arrange(p1, p2, ncol = 1, heights = c(3, 1.2))
   return(p)
-
 }
+
+
+#' Compare multiple stock prices
+#' @import data.table
+#' @import plotly
+#' @param  tickers list of the company tickers
+#' @param start_date startdate of the data
+#' @export
+show_percent_change_of_stocks <- function(tickers, start_date ) {
+  df <- rbindlist(lapply(tickers, stock_get_one_ticker, start_date=start_date, ad_local_text = T, ad_percent_change =T ))
+  return(plot_ly(df, x=~date, y=~percent_change, color=~ticker, type = 'scatter', mode = 'lines', text=paste('Open: ', df$open, '\n', 'Close: ', df$close,'\n',
+                                                                                                             'Low: ', df$low, '\n', 'High: ', df$high,'\n', 'Change: ', round(df$percent_change, 2),'%' )) %>%
+           layout(yaxis = list(title='', ticksuffix = "%"), xaxis= list(title='')))
+}
+
+
+
+
+
+
+
