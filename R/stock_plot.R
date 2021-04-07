@@ -1,15 +1,17 @@
 #' Plot one stock
 #' @export
 #' @param ticker The ticker id of the company
+#' @param start_date start date of the plot
+#' @param end_date end date of the plot
 #' @import ggplot2
 #' @importFrom tidyquant geom_candlestick
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid grid.newpage grid.draw
 #' @importFrom gridExtra grid.arrange
-stock_show_one_plot <- function(ticker ) {
+stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=Sys.Date()  ) {
 
   # ticker <- 'RIDE'
-  t <- utility_ad_local_min_max(stock_get_one_ticker(ticker = ticker, start_date = (Sys.Date()-500), end_date = Sys.Date()),number_of_days = 20)
+  t <- utility_ad_local_min_max(stock_get_one_ticker(ticker = ticker, start_date =start_date , end_date = end_date),number_of_days = 20)
 
 
   sec_loc <- paste0('Sector location: ', which(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name==ticker) ,'/', length(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name)  )

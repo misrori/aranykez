@@ -4,10 +4,18 @@
 \alias{stock_show_one_plot}
 \title{Plot one stock}
 \usage{
-stock_show_one_plot(ticker)
+stock_show_one_plot(
+  ticker,
+  start_date = (Sys.Date() - 500),
+  end_date = Sys.Date()
+)
 }
 \arguments{
 \item{ticker}{The ticker id of the company}
+
+\item{start_date}{start date of the plot}
+
+\item{end_date}{end date of the plot}
 }
 \description{
 Plot one stock
