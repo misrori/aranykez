@@ -7,7 +7,8 @@
 stock_show_one_plot(
   ticker,
   start_date = (Sys.Date() - 500),
-  end_date = Sys.Date()
+  end_date = Sys.Date(),
+  local_point_days = 20
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ stock_show_one_plot(
 \item{start_date}{start date of the plot}
 
 \item{end_date}{end date of the plot}
+
+\item{local_point_days}{numbar of days to became a local point}
 }
 \description{
 Plot one stock

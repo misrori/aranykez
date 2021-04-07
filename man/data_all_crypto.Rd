@@ -5,7 +5,7 @@
 \alias{data_all_crypto}
 \title{All crypto data}
 \format{
-An object of class \code{data.table} (inherits from \code{data.frame}) with 4585 rows and 27 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 4619 rows and 27 columns.
 }
 \usage{
 data_all_crypto
