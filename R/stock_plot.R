@@ -48,8 +48,7 @@ stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=
     geom_line(aes(y = ma_50_value), color = "orange") +
     labs(title= my_title , x= '', y="$",
          subtitle =my_sub_title )+
-    theme_bw()+
-    geom_label_repel( box.padding = 0.5, max.overlaps = Inf )
+    theme_bw()
 
 
 
@@ -73,6 +72,9 @@ stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=
     p2 <- p2+
       theme(axis.title = element_text(size=20))+
       theme(axis.text=element_text(size=20))
+  }else{
+    p1 <- p1+ geom_label_repel( box.padding = 0.5, max.overlaps = Inf )
+
   }
 
 
