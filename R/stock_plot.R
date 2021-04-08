@@ -4,33 +4,42 @@
 #' @param start_date start date of the plot
 #' @param end_date end date of the plot
 #' @param local_point_days numbar of days to became a local point
+#' @param plot_title if you want to set the title
+#' @param plot_subtitle if you want to set the plot subtitle
 #' @import ggplot2
 #' @importFrom tidyquant geom_candlestick
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid grid.newpage grid.draw
 #' @importFrom gridExtra grid.arrange
-stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=Sys.Date(), local_point_days= 20  ) {
+stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=Sys.Date(), local_point_days= 20, plot_title= NULL, plot_subtitle=NULL  ) {
 
   # ticker <- 'RIDE'
   t <- utility_ad_local_min_max(stock_get_one_ticker(ticker = ticker, start_date =start_date , end_date = end_date),number_of_days = local_point_days)
 
 
-  sec_loc <- paste0('Sector location: ', which(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name==ticker) ,'/', length(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name)  )
-  ind_loc <- paste0('Industry location: ', which(data_all_stock[industry==data_all_stock[name==ticker]$industry,]$name==ticker), '/', length(data_all_stock[industry==data_all_stock[name==ticker]$industry,]$name)    )
+  if (is.null(plot_title)) {
+    sec_loc <- paste0('Sector location: ', which(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name==ticker) ,'/', length(data_all_stock[sector==data_all_stock[name==ticker]$sector,]$name)  )
+    ind_loc <- paste0('Industry location: ', which(data_all_stock[industry==data_all_stock[name==ticker]$industry,]$name==ticker), '/', length(data_all_stock[industry==data_all_stock[name==ticker]$industry,]$name)    )
 
-  my_title<-  paste0(data_all_stock[name==ticker]$description, ' (', ticker,  ') ', ' | $', round(data_all_stock[name==ticker]$close, 2),
-                     ' | ',  data_all_stock[name==ticker]$sector, ' | ', data_all_stock[name==ticker]$industry )
+    my_title<-  paste0(data_all_stock[name==ticker]$description, ' (', ticker,  ') ', ' | $', round(data_all_stock[name==ticker]$close, 2),
+                       ' | ',  data_all_stock[name==ticker]$sector, ' | ', data_all_stock[name==ticker]$industry )
+  }else{
+    my_title <- plot_title
+  }
 
-  nb_imp <- ifelse(is.na(data_all_stock[name==ticker]$number_of_employees[1]), 'Unknown', format(as.numeric(data_all_stock[name==ticker]$number_of_employees[1]) , big.mark=',') )
+  if (is.null(plot_subtitle) ) {
+    nb_imp <- ifelse(is.na(data_all_stock[name==ticker]$number_of_employees[1]), 'Unknown', format(as.numeric(data_all_stock[name==ticker]$number_of_employees[1]) , big.mark=',') )
 
-  my_sub_title <-  paste0('Performance: | week: ', round(data_all_stock[name==ticker]$Perf.W, 2),  '% | ',
-                          'month: ', round(data_all_stock[name==ticker]$Perf.1M, 2),  '% | ',
-                          '6 months: ', round(data_all_stock[name==ticker]$Perf.6M, 2),  '% | ',
-                          '1 year: ', round(data_all_stock[name==ticker]$Perf.Y, 2),  '%' ,'\n',
-                          'Market cap: $', format(round(as.numeric(data_all_stock[name==ticker]$market_cap_basic/1000000), 2),big.mark = ','), ' Million ',
-                          ' | Number of employees: ', nb_imp ,'\n',
-                          sec_loc, ', ',ind_loc)
-
+    my_sub_title <-  paste0('Performance: | week: ', round(data_all_stock[name==ticker]$Perf.W, 2),  '% | ',
+                            'month: ', round(data_all_stock[name==ticker]$Perf.1M, 2),  '% | ',
+                            '6 months: ', round(data_all_stock[name==ticker]$Perf.6M, 2),  '% | ',
+                            '1 year: ', round(data_all_stock[name==ticker]$Perf.Y, 2),  '%' ,'\n',
+                            'Market cap: $', format(round(as.numeric(data_all_stock[name==ticker]$market_cap_basic/1000000), 2),big.mark = ','), ' Million ',
+                            ' | Number of employees: ', nb_imp ,'\n',
+                            sec_loc, ', ',ind_loc)
+  }else{
+    my_sub_title <- plot_subtitle
+  }
 
   p1 <-   ggplot(t, aes(x = date, y = close, label=message)) +
     geom_candlestick(aes(open = open, high = high, low = low, close = close),colour_up = 'green') +theme_minimal()+
