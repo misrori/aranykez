@@ -10,7 +10,8 @@ stock_show_one_plot(
   end_date = Sys.Date(),
   local_point_days = 20,
   plot_title = NULL,
-  plot_subtitle = NULL
+  plot_subtitle = NULL,
+  fullhd = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ stock_show_one_plot(
 \item{plot_title}{if you want to set the title}
 
 \item{plot_subtitle}{if you want to set the plot subtitle}
+
+\item{fullhd}{if you want to save as a full hd png}
 }
 \description{
 Plot one stock

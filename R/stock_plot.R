@@ -6,12 +6,13 @@
 #' @param local_point_days numbar of days to became a local point
 #' @param plot_title if you want to set the title
 #' @param plot_subtitle if you want to set the plot subtitle
+#' @param fullhd if you want to save as a full hd png
 #' @import ggplot2
 #' @importFrom tidyquant geom_candlestick
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid grid.newpage grid.draw
 #' @importFrom gridExtra grid.arrange
-stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=Sys.Date(), local_point_days= 20, plot_title= NULL, plot_subtitle=NULL  ) {
+stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=Sys.Date(), local_point_days= 20, plot_title= NULL, plot_subtitle=NULL, fullhd=FALSE) {
 
   # ticker <- 'RIDE'
   t <- utility_ad_local_min_max(stock_get_one_ticker(ticker = ticker, start_date =start_date , end_date = end_date),number_of_days = local_point_days)
@@ -48,12 +49,9 @@ stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=
     labs(title= my_title , x= '', y="$",
          subtitle =my_sub_title )+
     theme_bw()+
-    # theme(plot.title = element_text(size=30))+
-    # theme(plot.subtitle = element_text(size=26))+
-    # theme(axis.text=element_text(size=20))+
-    # theme(axis.title = element_text(size=20))+
-    # geom_label_repel( size=6.5  )
     geom_label_repel( box.padding = 0.5, max.overlaps = Inf )
+
+
 
 
   p2 <- ggplot(t, aes(x=date, y=rsi)) + geom_line()+
@@ -63,6 +61,21 @@ stock_show_one_plot <- function(ticker, start_date = (Sys.Date()-500), end_date=
     theme_bw()
     # theme(axis.title = element_text(size=20))+
     # theme(axis.text=element_text(size=20))
+
+  if (fullhd) {
+    p1 <- p1+
+    theme(plot.title = element_text(size=30))+
+    theme(plot.subtitle = element_text(size=26))+
+    theme(axis.text=element_text(size=20))+
+    theme(axis.title = element_text(size=20))+
+    geom_label_repel( size=6.5  )
+
+    p2 <- p2+
+      theme(axis.title = element_text(size=20))+
+      theme(axis.text=element_text(size=20))
+  }
+
+
 
 
   grid.newpage()
