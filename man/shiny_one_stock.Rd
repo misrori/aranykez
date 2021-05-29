@@ -4,7 +4,7 @@
 \alias{shiny_one_stock}
 \title{shiny show one plot of stock market}
 \usage{
-shiny_one_stock()
+shiny_one_stock(dofullhd = FALSE)
 }
 \description{
 shiny show one plot of stock market
