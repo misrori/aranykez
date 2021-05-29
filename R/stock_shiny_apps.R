@@ -14,7 +14,7 @@ $(document).on("keyup", function(e) {
 #' @import shinythemes
 #' @importFrom stats setNames
 #' @import shinycssloaders
-shiny_one_stock <- function() {
+shiny_one_stock <- function(fullhd=FALSE) {
   ui <- fluidPage(theme = shinytheme("cerulean"), title = 'Stock browser',
     div(uiOutput('ticker_out'),align='center'),
     div(uiOutput('linkbtn_out'), align='center'),
@@ -26,7 +26,7 @@ shiny_one_stock <- function() {
     })
     output$stock_plot <- renderPlot({
       tryCatch({
-        stock_show_one_plot(ticker = input$ticker)
+        stock_show_one_plot(ticker = input$ticker,fullhd)
       }, error=function(x){
         return(NULL)
       })
