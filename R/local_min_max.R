@@ -92,6 +92,20 @@ utility_ad_local_min_max <- function(df, number_of_days=20) {
     }
   }
 
+  if (df$text[local_points[length(local_points)]] == df$text[local_points[(length(local_points) - 1)]] ) {
+    if (df$text[local_points[length(local_points)]] == 'minimum') {
+      temp_max_last <- which.max(df[ local_points[length(local_points) -1 ] : local_points[length(local_points)  ]  ]$high)
+      df$text[((temp_max_last + local_points[length(local_points) -1] )-1)  ] <- 'maximum'
+    }
+
+    if (df$text[local_points[length(local_points)]] == 'maximum') {
+      temp_min_last <- which.min(df[ local_points[length(local_points) -1 ] : local_points[length(local_points)  ]  ]$low)
+      df$text[((temp_min_last + local_points[length(local_points) -1] )-1)  ] <- 'minimum'
+    }
+
+  }
+
+
   # go thrugh on clean local points and ad text
   local_points <- which(df$text!='')
   for (i in 2:length(local_points) ) {
