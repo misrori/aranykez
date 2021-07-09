@@ -57,4 +57,3 @@ utility_change_col_to_num <- function(df) {
 data_all_stock <- utility_change_col_to_num(utility_all_stock_from_tradingvies())
 
 
-
